@@ -1,0 +1,130 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 21px;
+    font-weight: bold;
+    justify-content: center;
+}
+
+
+.screen {
+    display: grid;
+    max-width: 450px;
+    min-height: 550px;
+    max-height: 100%;
+    width: 400px;
+    height: 620px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.calculator {
+    background-color: #E6EAEF;
+    align-self: center;
+    place-content: center;
+    border: 3px solid #908F94;
+    border-radius: 2%;
+    padding: 17px;
+    max-height: 100vmax;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 45vmax, 80vmax;
+    
+
+    
+}
+
+.button  {
+    margin: 8.5px;
+    display: grid;
+    place-items: center;
+    width: 59.5px;
+    height: 59.5px;
+    border: 1px solid #433F48;
+    background-color: #433F48;
+    border-radius: 50%; 
+    
+    color: white;
+    cursor: pointer;
+
+}
+
+.button:hover {
+
+    border: 1px solid #56525C;
+    background-color: #56525C;
+
+}
+
+.resultado {
+    background-color: #908F94;
+    align-self: center;
+    width: 91%;
+    height: 20%;
+    min-height: 65px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    border: 3px solid #433F48;
+    border-radius: 7px;
+    margin: 10.2px 8.5px;
+    color:white;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+.igualdade > .button{
+
+    display:grid;
+    position: relative;
+    width: 146.6px;
+    height: 59.5px;
+
+    background-color: #DA4D6D;
+    border: none;
+    border-radius: 100px;
+
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    cursor: pointer;
+
+    font-size:26px;
+
+}
+
+.btns > .button {
+    background-color: #DA4D6D;
+    border: 1px solid #DA4D6D;
+    
+}
+
+
+.btns2 > .button {
+    color: white;
+    border: 1px solid #DA4D6D;
+    background-color: #DA4D6D;
+    
+}
+
+.btns2, .btns :hover{
+
+    border: 1px solid #FF6185;
+    background-color: #FF6185;
+
+}
+
+.igualdade :hover {
+    background-color: #FF6185;
+}
+
+
+
