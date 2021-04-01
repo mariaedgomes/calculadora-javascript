@@ -17,6 +17,7 @@
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
+    
 }
 
 .calculator {
@@ -125,6 +126,9 @@
 .igualdade :hover {
     background-color: #FF6185;
 }
+
+
+
 
 
 

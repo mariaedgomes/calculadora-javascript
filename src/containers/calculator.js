@@ -7,7 +7,7 @@ import  Button  from '../components/buttons';
 
 class Calculator extends Component {
 
-    initialState = { firstValue: 0, secondValue: 0 , operador: null, valor: 0, resultado: 0, show: 0, segundo: 0 }
+    initialState = { firstValue: 0, secondValue: 0 , operador: null, valor1: 0, valor2: 0, resultado: 0, show: 0, segundo: 0 }
     
     constructor(props) {
         super(props);
@@ -19,30 +19,30 @@ class Calculator extends Component {
 
             const lastValuef = this.state.firstValue;
 
-            if (value === ',' & this.state.valor === 0) {
-                this.setState({ firstValue: (lastValuef) + '.', valor: 1 })
+            if (value === ',' & this.state.valor1 === 0) {
+                this.setState({ firstValue: (lastValuef) + '.', valor1: 1 })
             }
-            else if (this.state.valor !== 0) {
+            else if (this.state.valor1 !== 0) {
                     
-                switch (this.state.valor) {
+                switch (this.state.valor1) {
 
                     case 1:
-                        this.setState({ firstValue: (parseFloat((lastValuef)) + parseFloat((value / 10))), valor: 2 });
+                        this.setState({ firstValue: (parseFloat((lastValuef)) + parseFloat((value / 10))), valor1: 2 });
                         break
                     case 2:
-                        this.setState({ firstValue: (parseFloat(lastValuef) + parseFloat(value / 100)).toFixed(2), valor: 3 });
+                        this.setState({ firstValue: (parseFloat(lastValuef) + parseFloat(value / 100)).toFixed(2), valor1: 3 });
                         break
                     case 3:
-                        this.setState({ firstValue: (parseFloat(lastValuef) + parseFloat(value / 1000)).toFixed(3), valor: 4 });
+                        this.setState({ firstValue: (parseFloat(lastValuef) + parseFloat(value / 1000)).toFixed(3), valor1: 4 });
                         break
                     case 4:
-                        this.setState({ firstValue: (parseFloat(lastValuef) + parseFloat(value / 10000)).toFixed(4), valor: 5 });
+                        this.setState({ firstValue: (parseFloat(lastValuef) + parseFloat(value / 10000)).toFixed(4), valor1: 5 });
                         break
                     case 5:
-                        this.setState({ firstValue: (parseFloat(lastValuef) + parseFloat(value / 100000)).toFixed(5), valor: 6 });
+                        this.setState({ firstValue: (parseFloat(lastValuef) + parseFloat(value / 100000)).toFixed(5), valor1: 6 });
                         break
                     case 6:
-                        this.setState({ firstValue: (parseFloat(lastValuef) + parseFloat(value / 1000000)).toFixed(6), valor: 7 });
+                        this.setState({ firstValue: (parseFloat(lastValuef) + parseFloat(value / 1000000)).toFixed(6), valor1: 7 });
                         break
                     default:
                         alert('Máximo de 6 casas decimais atingido')
@@ -58,30 +58,32 @@ class Calculator extends Component {
             this.setState({ segundo: 1 });
             const lastValues = this.state.secondValue;
 
-            if (value === ',' & parseInt(lastValues) === lastValues) {
-                this.setState({ secondValue: (lastValues) + '.', valor: 1 })
+            if (value === ',' &  this.state.valor2 === 0) {
+                
+
+                this.setState({ secondValue: parseInt(lastValues) + '.', valor2: 1 })
             }
-            else if (this.state.valor >= 1) {
+            else if (this.state.valor2 !== 0) {
                     
-                switch (this.state.valor) {
+                switch (this.state.valor2) {
 
                     case 1:
-                        this.setState({ secondValue: (parseFloat((lastValues)) + parseFloat((value / 10))), valor: 2 });
+                        this.setState({ secondValue: (parseFloat((lastValues)) + parseFloat((value / 10))), valor2: 2 });
                         break
                     case 2:
-                        this.setState({ secondValue:((parseFloat(lastValues) + parseFloat(value / 100)).toFixed(2)), valor: 3 });
+                        this.setState({ secondValue:((parseFloat(lastValues) + parseFloat(value / 100)).toFixed(2)), valor2: 3 });
                         break
                     case 3:
-                        this.setState({ secondValue: ((parseFloat(lastValues) + parseFloat(value / 1000)).toFixed(3)), valor: 4 });
+                        this.setState({ secondValue: ((parseFloat(lastValues) + parseFloat(value / 1000)).toFixed(3)), valor2: 4 });
                         break
                     case 4:
-                        this.setState({ secondValue: ((parseFloat(lastValues) + parseFloat(value / 10000)).toFixed(4)), valor: 5 });
+                        this.setState({ secondValue: ((parseFloat(lastValues) + parseFloat(value / 10000)).toFixed(4)), valor2: 5 });
                         break
                     case 5:
-                        this.setState({ secondValue: ((parseFloat(lastValues) + parseFloat(value / 100000)).toFixed(5)), valor: 6 });
+                        this.setState({ secondValue: ((parseFloat(lastValues) + parseFloat(value / 100000)).toFixed(5)), valor2: 6 });
                         break
                     case 6:
-                        this.setState({ secondValue: ((parseFloat(lastValues) + parseFloat(value / 1000000)).toFixed(6)), valor: 7 });
+                        this.setState({ secondValue: ((parseFloat(lastValues) + parseFloat(value / 1000000)).toFixed(6)), valor2: 7 });
                         break
                     default:
                         alert('Máximo de 6 casas decimais atingido')
@@ -103,26 +105,56 @@ class Calculator extends Component {
     }
 
     pickOperation = (op) => {
+        var lista = ['+', '-', '/', '*', 'x', '^'];
+        var qtd = 0;
+        for (let c = 0; c < lista.length; c++){
+            if (this.state.operador === lista[c]) {
+                qtd = 1;
+            }
+        }
+        var valor = parseFloat(this.state.resultado);
+        
+    
 
         switch (op) {
             case 1:
-                this.setState({ operador: '+' });
+                if (qtd === 1) {
+                    this.setState({ operador: '+', firstValue: valor, secondValue: 0, valor2: 0, valor1:6,  resultado: 0, show: 0, segundo: 0 });
+                } else {
+                    this.setState({ operador: '+'});
+                }
                 return
                
             case 2:
-                this.setState({ operador: '-' });
+                if (qtd === 1) {
+                    this.setState({ operador: '-', firstValue: valor, secondValue: 0, valor2: 0, valor1:6,  resultado: 0, show: 0, segundo: 0 });
+                } else {
+                    this.setState({ operador: '-'});
+                }
                 return
               
             case 3:
-                this.setState({ operador: '/' });
+                if (qtd === 1) {
+                    this.setState({ operador: '/', firstValue: valor, secondValue: 0, valor2: 0, valor1:6,  resultado: 0, show: 0, segundo: 0 });
+                } else {
+                    this.setState({ operador: '/'});
+                }
                 return 
               
             case 4:
-                this.setState({ operador: 'x' });
+                if (qtd === 1) {
+                    this.setState({ operador: 'x', firstValue: valor, secondValue: 0, valor2: 0, valor1:6,  resultado: 0, show: 0, segundo: 0 });
+                } else {
+                    this.setState({ operador: 'x'});
+                }
                 return
               
             case 5:
-                this.setState({ operador: '^' });
+                if (qtd === 1) {
+                    this.setState({ operador: '^', firstValue: valor, secondValue: 0, valor2: 0, valor1:6,  resultado: 0, show: 0, segundo: 0 });
+                } else {
+                    this.setState({ operador: '^'});
+                }
                 return 
                 
             case 'C':
@@ -131,34 +163,43 @@ class Calculator extends Component {
 
             case '=':
                 
+                const v1 = this.state.valor1;
+                const v2 = this.state.valor2;
+                var usado = 1;
 
-                const a = this.state.firstValue;
-                const b = this.state.secondValue;
+                if (v1 > v2) {
+                    usado = parseInt(v1);
+                } else {
+                    usado = parseInt(v2);
+
+                }
+                const a = parseFloat(this.state.firstValue);
+                const b = parseFloat(this.state.secondValue);
                 this.setState({show: 1})
         
 
                 switch (this.state.operador) {
                     case '+':
-                        return this.setState({ resultado: (a + b) });
+                        return this.setState({ resultado: (a + b).toFixed(usado) });
                         
                 
                 
                     case '-':
-                        return this.setState({ resultado: (a - b) });
+                        return this.setState({ resultado: (a - b).toFixed(usado) });
                 
                     case '/':
                         if (b === 0) {
                             alert('Não podemos dividir por zero');
                             return this.setState(this.initialState);
                         } else {
-                            return this.setState({ resultado: (a / b) });
+                            return this.setState({ resultado: (a / b).toFixed(usado + 2)});
                         };
                 
                     case 'x':
-                        return this.setState({ resultado: (a * b) });
+                        return this.setState({ resultado: (a * b).toFixed(usado + 1) });
 
                     case '^':
-                        return this.setState({ resultado: (a ** b) });
+                        return this.setState({ resultado: (a ** b).toFixed(usado + 1) });
                     
                 }
                
@@ -169,8 +210,6 @@ class Calculator extends Component {
     }
 
     
-
-
     getValue = () => {
         if (this.state.operador === null & this.state.show === 0) {
             return this.state.firstValue;
@@ -179,14 +218,19 @@ class Calculator extends Component {
             if (this.state.resultado === 0 & this.state.secondValue === 0) {
                 
                 if (this.state.segundo === 1) {
-                    return (this.state.firstValue + '  ' + this.state.operador + '  ' + this.state.secondValue  + '  ');
+                    return (this.state.firstValue + '  ' + this.state.operador + '  ' + this.state.secondValue + '  ');
                 }
                 return (this.state.firstValue + '  ' + this.state.operador + '  ');
             } else if (this.state.secondValue !== 0 & this.state.resultado === 0) {
 
-                return (this.state.firstValue + '  ' + this.state.operador + '  ' + this.state.secondValue  +'  ');
+                return (this.state.firstValue + '  ' + this.state.operador + '  ' + this.state.secondValue + '  ');
+            } else {
+                if (this.state.resultado === parseInt(this.state.resultado)) {
+                    return (this.state.firstValue + '  ' + this.state.operador + '  ' + this.state.secondValue + '  ' + ' = ' + parseInt(this.state.resultado));
+                } else {
+                    return (this.state.firstValue + '  ' + this.state.operador + '  ' + this.state.secondValue + '  ' + ' = ' + parseFloat(this.state.resultado));
+                }
             }
-            return (this.state.firstValue + '  ' + this.state.operador + '  ' + this.state.secondValue  +'  '+ ' = ' + this.state.resultado);
 
 
         } 
